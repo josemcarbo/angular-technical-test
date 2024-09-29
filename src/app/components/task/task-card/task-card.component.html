@@ -1,0 +1,20 @@
+<article *ngIf="task" [ngClass]="{ completed: task.completed }">
+  <i class="material-icons" (click)="removeTask(task.id)">close</i>
+  <input
+    type="checkbox"
+    [checked]="task.completed"
+    (change)="onCheckboxChange($event)"
+  />
+  <span class="title">{{ task.title }}</span>
+  <span class="subtitle">{{ task.due }}</span>
+  <ul *ngIf="task.members?.length">
+    <li *ngFor="let member of task?.members; let index">
+      <span>{{ member?.fullName }}</span>
+      <div class="skills-container">
+        <i *ngFor="let skill of member?.skills">
+          {{ skill }}
+        </i>
+      </div>
+    </li>
+  </ul>
+</article>

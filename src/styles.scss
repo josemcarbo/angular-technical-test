@@ -1,1 +1,154 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --gray-950: #111111;
+  --gray-900: #141414;
+  --gray-800: #1f1f1f;
+  --gray-500: #666;
+  --gray-300: #999;
+  --white: #ffffff;
+  --black: #000000;
+  --purple: #9013fe;
+  --blue: #4a90e2;
+  --green: #4ae261;
+  --red: #e24a4a;
+
+  --spacing-600: 60px;
+  --spacing-500: 50px;
+  --spacing-300: 24px;
+  --spacing-200: 16px;
+  --spacing-150: 12px;
+  --spacing-100: 8px;
+  --spacing-50: 4px;
+  --spacing-25: 2px;
+
+  --text-preset-1: 400 24px/150% "Roboto", sans-serif;
+  --text-preset-2: 400 20px/150% "Roboto", sans-serif;
+  --text-preset-3: 400 16px/150% "Roboto", sans-serif;
+  --text-preset-4: 400 14px/150% "Roboto", sans-serif;
+  --text-preset-5: 400 12px/150% "Roboto", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  overflow: auto;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  width: 4px;
+  border-radius: 6px;
+}
+
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #555;
+// }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  & label {
+    font: var(--text-preset-4);
+    color: var(--gray-300);
+    padding: 0;
+    margin: 0;
+  }
+
+  & i {
+    color: var(--red);
+    font: var(var(--text-preset-5));
+  }
+}
+
+.error {
+  color: var(--red);
+  font: var(var(--text-preset-5));
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--gray-300);
+  font: var(--text-preset-3);
+  font-weight: 200;
+  color: var(--gray-800);
+}
+
+input[type="text"]:focus,
+input[type="text"]:focus-visible,
+input[type="text"]:focus-within,
+input[type="date"]:focus,
+input[type="date"]:focus-visible,
+input[type="date"]:focus-within,
+input[type="number"]:focus,
+input[type="number"]:focus-visible,
+input[type="number"]:focus-within {
+  border: 0;
+  border-bottom: 1px solid var(--gray-800);
+  outline: none !important;
+}
+
+select {
+  border: 0;
+  border-bottom: 1px solid var(--gray-300);
+  font: var(--text-preset-4);
+  font-weight: 200;
+  color: var(--gray-800);
+}
+
+select:focus,
+select:focus-visible,
+select:focus-within {
+  border: 0;
+  border-bottom: 1px solid var(--gray-800);
+  outline: none !important;
+}
+
+@keyframes loading {
+  20% {
+    background-position: 0% 50%, 50% 100%, 100% 100%;
+  }
+  40% {
+    background-position: 0% 0%, 50% 50%, 100% 100%;
+  }
+  60% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+  80% {
+    background-position: 0% 100%, 50% 100%, 100% 0%;
+  }
+}

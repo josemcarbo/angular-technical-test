@@ -1,0 +1,14 @@
+<app-header *ngIf="!showForm" [title]="formattedDate" [subtitle]="tasks.length"></app-header>
+<main *ngIf="!showForm">
+  <div class="content">
+    <app-task-list [tasks]="tasks"></app-task-list>
+  </div>
+
+  <app-button
+    [icon]="'add'"
+    [rounded]="true"
+    [fixed]="true"
+    (onClicked)="onCreateTask()"
+  ></app-button>
+</main>
+<app-task-form *ngIf="showForm" (onClose)="onHideForm()"></app-task-form>

@@ -1,0 +1,188 @@
+<div class="form-container" [formGroup]="form">
+  <h4>Create new Task</h4>
+  <div class="input-wrapper">
+    <label>Title</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      required
+      minlength="5"
+      formControlName="title"
+    />
+
+    <div *ngIf="title?.invalid && (title?.dirty || title?.touched)">
+      <i *ngIf="title?.errors?.['required']">required</i>
+      <i *ngIf="title?.errors?.['minlength']"> at least 5 characters </i>
+    </div>
+  </div>
+
+  <div class="input-wrapper">
+    <label>Due date</label>
+    <input
+      type="date"
+      id="due"
+      name="due"
+      class="form-control"
+      required
+      formControlName="due"
+    />
+    <div *ngIf="due?.invalid && (due?.dirty || due?.touched)">
+      <i *ngIf="due?.errors?.['required']">required</i>
+      <i *ngIf="due?.errors?.['pattern']">invalid date</i>
+    </div>
+  </div>
+  <div class="form-members-header-container">
+    <h3>Members</h3>
+    <app-button
+      [icon]="'person_add'"
+      [filled]="false"
+      [size]="'normal'"
+      (onClicked)="addMember()"
+    ></app-button>
+  </div>
+  <div class="form-members-container" formArrayName="members">
+    <div
+      class="form-members-item-container"
+      *ngFor="let member of members.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <app-button
+        class="fixed-position"
+        [icon]="'close'"
+        [rounded]="true"
+        [filled]="false"
+        [size]="'small'"
+        (onClicked)="removeMember(i)"
+      ></app-button>
+      <div class="input-wrapper">
+        <label>Full name</label>
+        <input
+          type="text"
+          id="fullName"
+          name="fullName"
+          required
+          minlength="5"
+          formControlName="fullName"
+        />
+
+        <div
+          *ngIf="
+            member.get('fullName')?.invalid &&
+            (member.get('fullName')?.dirty || member.get('fullName')?.touched)
+          "
+        >
+          <i *ngIf="member.get('fullName')?.errors?.['required']">required</i>
+          <i *ngIf="member.get('fullName')?.errors?.['minlength']">
+            at least 5 characters
+          </i>
+        </div>
+      </div>
+
+      <div class="input-wrapper">
+        <label>Age</label>
+        <input
+          type="number"
+          id="age"
+          name="age"
+          min="18"
+          required
+          formControlName="age"
+        />
+
+        <div
+          *ngIf="
+            member.get('age')?.invalid &&
+            (member.get('age')?.dirty || member.get('age')?.touched)
+          "
+        >
+          <i *ngIf="member.get('age')?.errors?.['required']">required</i>
+          <i *ngIf="member.get('age')?.errors?.['min']"> over 18 years old</i>
+        </div>
+      </div>
+
+      <div class="form-member-skills-header-container">
+        <h4>Skills</h4>
+        <app-button
+          [icon]="'library_add'"
+          [filled]="false"
+          [size]="'normal'"
+          (onClicked)="addSkill(i)"
+        ></app-button>
+      </div>
+      <div class="form-member-skills-container" formArrayName="skills">
+        <div
+          class="form-member-skills-item-container"
+          *ngFor="let skill of skills(i).controls; let j = index"
+          [formGroupName]="j"
+        >
+          <app-button
+            class="fixed-position"
+            [icon]="'close'"
+            [rounded]="true"
+            [filled]="false"
+            [size]="'small'"
+            (onClicked)="removeSkill(i, j)"
+          ></app-button>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              minlength="3"
+              formControlName="name"
+            />
+
+            <div
+              *ngIf="
+                skill.get('name')?.invalid &&
+                (skill.get('name')?.dirty || skill.get('name')?.touched)
+              "
+            >
+              <i *ngIf="skill.get('name')?.errors?.['required']"
+                >required</i
+              >
+              <i *ngIf="skill.get('name')?.errors?.['minlength']">
+                at least 3 characters
+              </i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <i class="error" *ngIf="skills(i)?.errors?.['minLengthArray']"
+          >at least 1 skill.
+        </i>
+        <i class="error" *ngIf="skills(i)?.errors?.['notRepeatValue']"
+          >not repeat skill
+        </i>
+      </div>
+    </div>
+  </div>
+  <div>
+    <i class="error" *ngIf="members?.errors?.['minLengthArray']"
+      >at least 1 member
+    </i>
+    <i class="error" *ngIf="members?.errors?.['notRepeatValue']"
+      >not repeat full name
+    </i>
+  </div>
+  <div class="form-action-container">
+    <app-button
+      [text]="'Cancel'"
+      [rounded]="true"
+      [filled]="false"
+      [size]="'small'"
+      (onClicked)="onCancel()"
+    ></app-button>
+    <app-button
+      [text]="'Save'"
+      [rounded]="true"
+      [filled]="true"
+      [size]="'small'"
+      [disabled]="form.invalid"
+      (onClicked)="onSubmit()"
+    ></app-button>
+  </div>
+</div>

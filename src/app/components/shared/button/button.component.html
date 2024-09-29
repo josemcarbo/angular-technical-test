@@ -1,0 +1,15 @@
+<button
+  [ngClass]="{
+    rounded: rounded && !text,
+    fixed: fixed,
+    filled: filled,
+    normal: size == 'normal',
+    large: size == 'large',
+    small: size == 'small'
+  }"
+  (click)="onClick()"
+  [disabled]="disabled"
+>
+  <span *ngIf="!icon">{{ text }}</span>
+  <i *ngIf="icon" class="material-icons">{{ icon }}</i>
+</button>

@@ -1,0 +1,13 @@
+<ul *ngIf="filteredTasks">
+  <li class="filters">
+    <span>Filters:</span>
+    <select (change)="onSelectChange($event)">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="pending">Pending</option>
+    </select>
+  </li>
+  <li *ngFor="let task of filteredTasks">
+    <app-task-card [task]="task"></app-task-card>
+  </li>
+</ul>

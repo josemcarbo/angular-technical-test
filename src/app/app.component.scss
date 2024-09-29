@@ -1,0 +1,30 @@
+.app-container {
+  width: 335px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--spacing-200) 0;
+
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 768px) {
+  .app-container {
+    width: 600px;
+  }
+}
+
+@media (min-width: 1366px) {
+  .app-container {
+    width: 1200px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .app-container {
+    width: 1600px;
+  }
+}
